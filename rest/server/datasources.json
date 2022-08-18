@@ -1,0 +1,25 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongodb": {
+    "host": "localhost",
+    "port": 27017,
+    "database": "knimbus",
+    "username": "",
+    "password": "",
+    "name": "mongodb",
+    "connector": "mongodb",
+    "useNewUrlParser": true
+  },
+  "mysqldb": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "database": "govtapp",
+    "username": "root",
+    "password": "root",
+    "name": "mysqldb",
+    "connector": "mysql"
+  }
+}

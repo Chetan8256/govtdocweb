@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "db"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "application": {
+    "dataSource": "mysqldb",
+    "public": true
+  },
+  "offlineform": {
+    "dataSource": "mysqldb",
+    "public": true
+  },
+  "members": {
+    "dataSource": "mysqldb",
+    "public": true
+  },
+  "invoiceslip": {
+    "dataSource": "mysqldb",
+    "public": true
+  },
+  "transactions": {
+    "dataSource": "mysqldb",
+    "public": true
+  },
+  "memberamount": {
+    "dataSource": "mysqldb",
+    "public": true
+  }
+}

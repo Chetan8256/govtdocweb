@@ -1,0 +1,103 @@
+{
+  "name": "application",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userid": {
+      "type": "number"
+    },
+    "token": {
+      "type": "string"
+    },
+    "panno": {
+      "type": "string"
+    },
+    "aocode": {
+      "type": "string"
+    },
+    "applicanttitle": {
+      "type": "string",
+      "required": true
+    },
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "middlename": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "fathername": {
+      "type": "string",
+      "required": true
+    },
+    "village": {
+      "type": "string",
+      "required": true
+    },
+    "aadharno": {
+      "type": "string",
+      "required": true
+    },
+    "postoffice": {
+      "type": "string",
+      "required": true
+    },
+    "tehsil": {
+      "type": "string",
+      "required": true
+    },
+    "dateofbirth": {
+      "type": "date",
+      "required": true
+    },
+    "district": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "emailid": {
+      "type": "string",
+      "required": true
+    },
+    "pincode": {
+      "type": "string",
+      "required": true
+    },
+    "mobileno": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "cardname": {
+      "type": "string",
+      "required": true
+    },
+    "form": {
+      "type": "object",
+      "required": true
+    },
+    "status": {
+      "type": "string",
+      "required": true
+    },
+    "flag": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

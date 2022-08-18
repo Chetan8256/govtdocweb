@@ -1,0 +1,28 @@
+{
+  "name": "offlineform",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userid": {
+      "type": "number",
+      "required": true
+    },
+    "form": {
+      "type": "object",
+      "required": true
+    },
+    "flag": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

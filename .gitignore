@@ -1,0 +1,5 @@
+._.DS_Store
+node_modules/
+._govtapp.sql
+.DS_Store
+client/node_modules/

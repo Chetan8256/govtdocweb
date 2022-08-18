@@ -1,0 +1,33 @@
+{
+  "name": "memberamount",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "memberid": {
+      "type": "number",
+      "required": true
+    },
+    "amount": {
+      "type": "Number",
+      "datatype": "decimal",
+      "scale": 2,
+      "precision": 10
+    },
+    "amountstatus": {
+      "type": "string"
+    },
+    "created": {
+      "type": "date"
+    },
+    "modified": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

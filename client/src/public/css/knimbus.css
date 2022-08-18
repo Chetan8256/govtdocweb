@@ -1,0 +1,11 @@
+body {
+    background-color: whitesmoke;
+}
+
+.ui.segment {
+    border: 0;
+}
+
+.ui.menu {
+    background-color: lightseagreen;
+}

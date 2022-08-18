@@ -1,0 +1,31 @@
+{
+  "name": "transactions",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userid": {
+      "type": "number",
+      "required": true
+    },
+    "applicationid": {
+      "type": "number",
+      "required": true
+    },
+    "amountcharged": {
+      "type": "number",
+      "required": true,
+      "datatype": "decimal",
+      "scale": 2
+    },
+    "created": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

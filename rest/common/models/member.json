@@ -1,0 +1,44 @@
+{
+  "name": "members",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "username": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "mobile": {
+      "type": "string",
+      "required": true
+    },
+    "password": {
+      "type": "string"
+    },
+    "flag": {
+      "type": "string"
+    },
+    "permission": {
+      "type": "string"
+    },
+    "created": {
+      "type": "date"
+    },
+    "companyname": {
+      "type": "string"
+    },
+    "companyaddress": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
