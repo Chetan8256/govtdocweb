@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { Container, Grid, Form, Checkbox, Button, Segment, Menu, Input } from 'semantic-ui-react';
 import {NavLink, Redirect} from 'react-router-dom'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import Layout from "../components/Layout";
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter'; 
 
 class Login extends Component {
 
@@ -15,8 +16,8 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        if (cookie.load('userId')) {
-            this.props.history.push('/dashboard')
+        if (Cookies.get('userId')) {
+            this.props.navigate('/dashboard')
         }
     }
 
@@ -45,12 +46,12 @@ class Login extends Component {
                 let alert = this.state.alert 
 
                 if (result.id && result.email) {
-                    cookie.save('userId', result.id, { path: '/' })
-                    cookie.save('username', result.username, { path: '/' })
+                    Cookies.set('userId', result.id, { path: '/' })
+                    Cookies.set('username', result.username, { path: '/' })
                     if (result.username === "admin") {
-                        this.props.history.push('/members')
+                        this.props.navigate('/members')
                     } else {
-                        this.props.history.push('/dashboard')
+                        this.props.navigate('/dashboard')
                     }
                     
                 }
@@ -126,4 +127,4 @@ class Login extends Component {
     }
 }
 
-export default Login
+export default withRouter(Login)

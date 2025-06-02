@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import App from './App';
 import RequestLists from './pages/requestslist';
 import Application from './pages/application';
@@ -20,26 +20,27 @@ import Profile from './pages/profile';
 import ChangePassword from './pages/changepassword';
 
 const routing = (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Main} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/uploadpdf" component={OfflineApplication} />
-        <Route path="/application/:application" component={Application} />
-        <Route path="/requests" component={RequestLists} />
-        <Route path="/notification" component={ViewSlip} />
-        <Route path="/members" component={Members} />
-        <Route path="/transactions" component={Transactions} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/invoices" component={InvoiceSlips} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/addamount" component={AddAmount} />
-        <Route path="/changepassword" component={ChangePassword} />
-        <Route path="/token/:applicationid" target="_blank" component={PrintInvoice} />
-      </Switch>
-    </Router>
-  )
+  <Router>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/uploadpdf" element={<OfflineApplication />} />
+      <Route path="/application/:application" element={<Application />} />
+      <Route path="/requests" element={<RequestLists />} />
+      <Route path="/notification" element={<ViewSlip />} />
+      <Route path="/members" element={<Members />} />
+      <Route path="/transactions" element={<Transactions />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/invoices" element={<InvoiceSlips />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/addamount" element={<AddAmount />} />
+      <Route path="/changepassword" element={<ChangePassword />} />
+      <Route path="/token/:applicationid" element={<PrintInvoice />} />
+    </Routes>
+  </Router>
+);
+
 ReactDOM.render(routing, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

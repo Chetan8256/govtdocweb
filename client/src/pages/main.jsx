@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { Grid, Segment, Image, List, Container, Header,Divider, Card } from 'semantic-ui-react'
-import {NavLink, withRouter} from 'react-router-dom'
-import cookie from 'react-cookies'
+import { NavLink } from 'react-router-dom'
+import { withRouter } from '../utils/withRouter'
+import Cookies from 'js-cookie'
 import Layout from "../components/Layout";
 import banner from "../public/img/banner/ban-3.png"
 import adhaarcard from "../public/img/aadhaarcard.jpg"
@@ -22,18 +23,18 @@ class Main extends Component {
     constructor(){
         super()
         this.onSubmit.bind(this)
-    }
+    }   
 
     componentDidMount() {
-        if (cookie.load('userId')) {
-            this.props.history.push('/dashboard')
+        if (Cookies.get('userId')) {
+            this.props.navigate('/dashboard')
         }
     }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     onSubmit = (page) => () => {
-        this.props.history.push('/' + page)
+        this.props.navigate('/' + page)
     }
     
     render() {

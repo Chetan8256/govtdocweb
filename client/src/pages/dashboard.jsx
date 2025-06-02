@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Container, Segment, Label, Header, Grid } from 'semantic-ui-react';
 import Layout from "../components/Layout";
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter';
 
 class Dashboard extends Component {
     state = {
@@ -13,10 +14,10 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
-        var userid = cookie.load("userId")
+        var userid = Cookies.get("userId")
         
         let data = {
             where: {
@@ -111,4 +112,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard
+export default withRouter(Dashboard)

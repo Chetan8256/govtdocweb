@@ -2,23 +2,23 @@ import React, {Component} from 'react'
 import {Menu, Dropdown, Icon, Header} from 'semantic-ui-react'
 
 import {NavLink, Link} from 'react-router-dom'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import logo from "../public/img/computerking.png"
 
-class TopHeader extends Component {
+class TopHeader extends Component {		
 	state = {
 		userid: "",
 		username: ""
 	}
-	constructor () {
+	constructor () {	
 		super()
 		this.logoutHandle = this.logoutHandle.bind(this)
 	}
 
 	componentDidMount() {
-		if (cookie.load("userId")) {
-			this.setState({userid: cookie.load("userId")})
-			this.setState({username: cookie.load("username")})
+		if (Cookies.get	("userId")) {
+			this.setState({userid: Cookies.get("userId")})
+			this.setState({username: Cookies.get("username")})
 		}
 	}
 
@@ -27,8 +27,8 @@ class TopHeader extends Component {
 	handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
 	logoutHandle = () => {
-		cookie.remove('userId', { path: '/' })
-		cookie.remove('username', { path: '/' })
+		Cookies.remove('userId', { path: '/' })
+		Cookies.remove('username', { path: '/' })
 	}
 
 	render () {
@@ -48,7 +48,7 @@ class TopHeader extends Component {
 
 		const trigger = (
 			<span>
-			  <Icon name='user' /> {cookie.load("username")}
+			  <Icon name='user' /> {Cookies.get("username")}
 			</span>
 		  )
 

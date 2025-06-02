@@ -1,10 +1,9 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import { Container, Grid, Form, Input, Header, Segment, Message, Dimmer, Loader } from 'semantic-ui-react';
 import Layout from "../components/Layout";
-import { DateInput } from 'semantic-ui-calendar-react';
-import cookie from 'react-cookies'
-import cryptoRandomString from 'crypto-random-string';
+import Cookies from 'js-cookie'
+import {nanoid} from 'nanoid';
+import { withRouter } from '../utils/withRouter';
 
 import * as Constants from '../common/constants'
 
@@ -67,10 +66,10 @@ class Application extends Component {
     }
     
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
-        const { match: { params } } = this.props
+        const { params } = this.props
         
         if (params.application !== "update" && params.application !== "new") {
             let data = {
@@ -219,7 +218,7 @@ class Application extends Component {
         let dataObj = {
             status: "pending",
             flag: "N",
-            userid: cookie.load("userId"),
+            userid: Cookies.get("userId"),
             aocode: this.state.aocode1 + "-" + this.state.aocode2 + "-" + this.state.aocode3 + "-" + this.state.aocode4,
             form: this.state.form
         }
@@ -230,7 +229,7 @@ class Application extends Component {
         if (this.state.applicationid) {
             dataObj["id"] = this.state.applicationid;    
         }
-        dataObj["token"] = cryptoRandomString({length: 6});
+        dataObj["token"] = nanoid(6);
         
         this.postApplicationData(dataObj)
 	}
@@ -418,14 +417,14 @@ class Application extends Component {
                                             onChange={this.fatherNameChange}
                                             value={fathername}
                                         />
-                                        <DateInput
+                                        <Form.Input
+                                            type="date"
                                             name="date"
                                             placeholder="Date"
                                             label='Date of Birth'
-                                            value={this.state.date}
                                             iconPosition="left"
                                             dateFormat="YYYY-MM-DD"
-                                            value = {new Date(dateofbirth).toLocaleDateString()}
+                                            value={new Date(dateofbirth).toLocaleDateString()}
                                             onChange={this.dateofbirthChange}
                                         />
                                         <Form.Field
@@ -558,4 +557,4 @@ class Application extends Component {
     }
 }
 
-export default Application
+export default withRouter(Application)

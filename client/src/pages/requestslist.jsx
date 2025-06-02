@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import { Container, Form, Modal, Input, Button, Segment, Table, Message, Pagination, Dimmer, Loader } from 'semantic-ui-react'
 import Layout from "../components/Layout"
 import { Document, Page, pdfjs } from 'react-pdf'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter';
+// import workerSrc from 'pdfjs-dist/build/pdf.worker.min.js';
 
 class RequestLists extends Component {
     state = {
@@ -42,11 +44,11 @@ class RequestLists extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
 
-        pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+        pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 		this.fetchAllApplications()
     }
@@ -60,7 +62,7 @@ class RequestLists extends Component {
                     isLoaded: true,
                     applications: result,
                     totalPages: (result.length < 15)? 1: result.length / this.state.itemsPerPage
-                
+                    
                 });
                 //return Object.keys(result.status)
             },
@@ -106,9 +108,10 @@ class RequestLists extends Component {
                 (result) => {
                     let alert = this.state.alert   
                     if (result.message && result.message.length > 0) {
+                        console.log(result.message[0].form.content)
                         this.setState({uploadedform: "data:application/pdf;base64," + result.message[0].form.content })
                         this.setState({applicationid: result.message[0].id })
-                        pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
+                        pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';  
                         alert["display"] = false
                         this.setState({loader: false, alert})
                     } else {                            
@@ -451,7 +454,7 @@ class RequestLists extends Component {
                                                 file={uploadedform}
                                                 onLoadSuccess={this.onDocumentLoadSuccess.bind(this)}
                                             >
-                                                <Page width="1038" pageNumber={pageNumber} />
+                                                <Page pageNumber={pageNumber} />
                                             </Document>,
                                             <p>Page {pageNumber} of {numPages}</p>,
                                             <button onClick={() => this.setState(prevState => ({ pageNumber: prevState.pageNumber - 1 }))}>
@@ -547,4 +550,4 @@ class RequestLists extends Component {
     }
 }
 
-export default RequestLists
+export default withRouter(RequestLists)

@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Container, Segment } from 'semantic-ui-react';
 import Layout from "../components/Layout";
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter';
 
 class ViewSlip extends Component {
 
@@ -15,12 +16,12 @@ class ViewSlip extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
         
         let data = {
-            userid: cookie.load("userId"),
+            userid: Cookies.get ("userId"),
         }
         
         
@@ -46,4 +47,4 @@ class ViewSlip extends Component {
     }
 }
 
-export default ViewSlip
+export default withRouter(ViewSlip)

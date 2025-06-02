@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import { Container, Segment, Table, Modal, Button, Pagination } from 'semantic-ui-react';
 import Layout from "../components/Layout";
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import { Document, Page, pdfjs } from 'react-pdf';
 import * as Constants from '../common/constants'
 import Dashboard from './dashboard';
+import { withRouter } from '../utils/withRouter';
 
 class InvoiceSlips extends Component {
 
@@ -25,13 +26,13 @@ class InvoiceSlips extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
         
         let data = {
             where: {
-               userid: cookie.load("userId"),
+               userid: Cookies.get("userId"),
             }
         }
 
@@ -57,7 +58,7 @@ class InvoiceSlips extends Component {
     show = (size, userid, modaltype, applicationid) => () => {
         let data = {
             where: {
-                userid: cookie.load("userId"),
+                userid: Cookies.get("userId"),
                 applicationid: applicationid
             }
         }
@@ -181,4 +182,4 @@ class InvoiceSlips extends Component {
     }
 }
 
-export default InvoiceSlips
+export default withRouter(InvoiceSlips)

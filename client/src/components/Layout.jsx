@@ -4,11 +4,11 @@ import 'semantic-ui-css/semantic.min.css'
 import TopHeader from './Header'
 import LeftBar from './LeftBar'
 import '../public/css/knimbus.css'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 
 export default props => {
-	let userid = cookie.load("userId")
-	let username = cookie.load("username")
+	let userid = Cookies.get("userId")
+	let username = Cookies.get("username")
 
 	return  (
 		<div>

@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Container, Form, Modal, Input, Button, Segment, Table, Message, Pagination } from 'semantic-ui-react'
 import Layout from "../components/Layout"
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter';
 
 
 class Members extends Component {
@@ -32,8 +33,8 @@ class Members extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
         
         var data = {
@@ -132,7 +133,7 @@ class Members extends Component {
                     alert["message"] = "Amount has been added successfully"
                     alert["type"] = "green"
                     alert["display"] = true
-                    this.props.history.push("/members")
+                    this.props.navigate("/members")
                 } else {                                    
                     alert["type"] = "red"
                     alert["display"] = false
@@ -322,4 +323,4 @@ class Members extends Component {
     }
 }
 
-export default Members
+export default withRouter(Members)

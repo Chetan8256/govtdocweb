@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import { Container, Grid, Header, Button, Segment, Message, Table } from 'semantic-ui-react';
-import Layout from "../components/Layout";
-import cookie from 'react-cookies'
+import { Container, Header, Button, Segment, Table } from 'semantic-ui-react';
 import * as Constants from '../common/constants'
 import ReactToPrint from 'react-to-print'
 
@@ -110,7 +108,7 @@ class PrintInvoice extends React.Component {
         id: null
     }
     componentDidMount() {
-        const { match: { params } } = this.props
+        const { params } = this.props
         console.log("application id = " + params.applicationid)
         this.setState({id: params.applicationid})
     }

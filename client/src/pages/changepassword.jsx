@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import * as Constants from '../common/constants'
 import Layout from '../components/Layout'
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import { Container, Segment, Header, Form, Button, Input, Message} from 'semantic-ui-react'
+import { withRouter } from '../utils/withRouter';
 
 class ChangePassword extends Component {
     state = {
@@ -18,11 +19,11 @@ class ChangePassword extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
         
-        this.setState({userid: cookie.load("userId")})
+        this.setState({userid: Cookies.get("userId")})
     }
 
     passwordHandle = (e, {value}) => {
@@ -123,4 +124,4 @@ class ChangePassword extends Component {
     }
 }
 
-export default ChangePassword
+export default withRouter(ChangePassword)

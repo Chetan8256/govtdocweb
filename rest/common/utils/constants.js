@@ -1,6 +1,6 @@
 module.exports = {
-    formupload: "/Users/cruise/Downloads/upload/",
-    slipupload: "/Users/cruise/Downloads/upload/slips/",
+    formupload: "/home/chetan/Downloads/upload/",
+    slipupload: "/home/chetan/Downloads/upload/slips/",
     disableRemomteMethods:["create","patchOrCreate","exists","count","prototype.patchAttributes",
       "upsert","updateAll","updateAttributes",
       "deleteById","replace","replaceById","replaceAttributes","createChangeStream",

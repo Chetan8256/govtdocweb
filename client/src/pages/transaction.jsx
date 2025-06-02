@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Container, Segment, Table } from 'semantic-ui-react';
 import Layout from "../components/Layout";
-import cookie from 'react-cookies'
+import Cookies from 'js-cookie'
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter';
 
 class Transactions extends Component {
     state = {
@@ -12,13 +13,13 @@ class Transactions extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
         
         let data = {
             where: {
-                userid: cookie.load("userId")
+                userid: Cookies.get("userId")
             }
         }
 
@@ -76,4 +77,4 @@ class Transactions extends Component {
     }
 }
 
-export default Transactions
+export default withRouter(Transactions)

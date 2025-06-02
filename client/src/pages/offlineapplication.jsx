@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { Container, Grid, Form, Input, Select,Button, Segment, Message } from 'semantic-ui-react';
 import Layout from "../components/Layout";
-import cookie from "react-cookies"
+import Cookies from "js-cookie"
 import * as Constants from '../common/constants'
+import { withRouter } from '../utils/withRouter';
 
 class OfflineApplication extends Component {
     state = {
@@ -20,8 +21,8 @@ class OfflineApplication extends Component {
     }
 
     componentDidMount() {
-        if ( ! cookie.load("userId")) {
-            this.props.history.push("/login")
+        if ( ! Cookies.get("userId")) {
+            this.props.navigate("/login")
         }
     }
 
@@ -125,4 +126,4 @@ class OfflineApplication extends Component {
     }
 }
 
-export default OfflineApplication
+export default withRouter(OfflineApplication)
